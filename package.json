@@ -1,0 +1,23 @@
+{
+  "name": "create-component",
+  "version": "0.0.1",
+  "description": "CLI for bootstrapping react component",
+  "main": "index.js",
+  "bin": {
+    "create-component": "index.js"
+  },
+  "scripts": {
+    "test": "ava -v && standard *.js lib/*.js"
+  },
+  "keywords": [
+    "react",
+    "library",
+    "component",
+    "cli"
+  ],
+  "author": "xiaomuzhu",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.1.6"
+  }
+}

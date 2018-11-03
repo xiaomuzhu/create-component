@@ -1,5 +1,8 @@
 {
-  "extends": "tslint:recommended",
+    "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
   "rules": {
     "align": [ true, "statements", "members" ],
     "ban-types": {

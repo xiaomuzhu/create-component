@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-'use strict'
+'use strict';
 
-const compatRequire = require('node-compat-require')
-compatRequire('./dist', { node: '>= 8' })
+const compatRequire = require('node-compat-require');
+compatRequire('./dist', { node: '>= 8' });

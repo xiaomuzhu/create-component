@@ -9,6 +9,9 @@
     "moduleResolution": "node",
     "stripInternal": true,
     "pretty": true,
+    "types": [
+        "node"
+    ],
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,

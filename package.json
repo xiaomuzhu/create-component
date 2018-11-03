@@ -4,10 +4,11 @@
   "description": "CLI for bootstrapping react component",
   "main": "index.js",
   "bin": {
-    "create-component": "index.js"
+    "create-component": "./index.js"
   },
   "scripts": {
-    "test": "ava -v && standard *.js lib/*.js"
+    "test": "ava -v && standard *.js lib/*.js",
+    "commit": "git-cz"
   },
   "keywords": [
     "react",
@@ -17,7 +18,22 @@
   ],
   "author": "xiaomuzhu",
   "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
   "devDependencies": {
+    "@types/node": "^10.12.2",
+    "commitizen": "^3.0.4",
+    "cz-conventional-changelog": "^2.1.0",
+    "tslint": "^5.11.0",
     "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.0",
+    "node-compat-require": "^1.0.5"
   }
 }

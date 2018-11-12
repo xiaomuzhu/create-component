@@ -2,4 +2,4 @@
 'use strict';
 
 const compatRequire = require('node-compat-require');
-compatRequire('./dist', { node: '>= 8' });
+compatRequire('./dist/bin/index.js', { node: '>= 8' });

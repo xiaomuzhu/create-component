@@ -18,7 +18,12 @@ var OpenSourceLicenseType;
     OpenSourceLicenseType["BSD"] = "BSD";
     OpenSourceLicenseType["MIT"] = "MIT";
     OpenSourceLicenseType["Apache"] = "Apache";
-})(OpenSourceLicenseType || (OpenSourceLicenseType = {}));
+})(OpenSourceLicenseType = exports.OpenSourceLicenseType || (exports.OpenSourceLicenseType = {}));
+var Manger;
+(function (Manger) {
+    Manger["NPM"] = "npm";
+    Manger["YARN"] = "yarn";
+})(Manger = exports.Manger || (exports.Manger = {}));
 function getScaffoldPath(scaffoldType, filePath = '') {
     return path.join(__dirname, `../../scaffold/${scaffoldType.FrameworkType}/${scaffoldType.Language}`, filePath);
 }

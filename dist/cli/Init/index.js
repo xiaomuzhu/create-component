@@ -15,7 +15,8 @@ const _ = require("lodash");
 const path = require("path");
 const config_1 = require("../../config");
 const utils_1 = require("../../utils");
-const tools_1 = require("./../../utils/tools");
+const tools_1 = require("../../utils/tools");
+const tools_2 = require("./../../utils/tools");
 const init_command_1 = require("./init-command");
 exports.default = {
     name: 'init [name]',
@@ -72,12 +73,12 @@ function getOptions(proName) {
             type: 'list',
             message: '请选择框架类型',
             name: 'frameworkType',
-            default: tools_1.FrameworkType.React,
+            default: tools_2.FrameworkType.React,
             choices: () => {
                 return [
                     {
                         name: 'React',
-                        value: tools_1.FrameworkType.React,
+                        value: tools_2.FrameworkType.React,
                     },
                 ];
             },
@@ -86,16 +87,16 @@ function getOptions(proName) {
             type: 'list',
             message: '请选择项目语言',
             name: 'projectLanguage',
-            default: tools_1.Language.JavaScript,
+            default: tools_2.Language.JavaScript,
             choices: () => {
                 return [
                     {
                         name: 'JavaScript',
-                        value: tools_1.Language.JavaScript,
+                        value: tools_2.Language.JavaScript,
                     },
                     {
                         name: 'TypeScript',
-                        value: tools_1.Language.TypeScript,
+                        value: tools_2.Language.TypeScript,
                     },
                 ];
             },
@@ -133,6 +134,52 @@ function getOptions(proName) {
             message: '请设置Author',
             name: 'author',
             default: process.env.USER,
+        },
+        {
+            type: 'input',
+            message: '请设置版本号',
+            name: 'proVersion',
+            default: config_1.default.version,
+        },
+        {
+            type: 'list',
+            message: '请选择开源证书',
+            name: 'license',
+            default: tools_2.OpenSourceLicenseType.MIT,
+            choices: () => {
+                return [
+                    {
+                        name: 'MIT',
+                        value: tools_2.OpenSourceLicenseType.MIT,
+                    },
+                    {
+                        name: 'BSD',
+                        value: tools_2.OpenSourceLicenseType.BSD,
+                    },
+                    {
+                        name: 'Apache',
+                        value: tools_2.OpenSourceLicenseType.Apache,
+                    },
+                ];
+            },
+        },
+        {
+            type: 'list',
+            message: '请选择包管理工具',
+            name: 'manger',
+            default: tools_1.Manger.NPM,
+            choices: () => {
+                return [
+                    {
+                        name: 'npm',
+                        value: tools_1.Manger.NPM,
+                    },
+                    {
+                        name: 'yarn',
+                        value: tools_1.Manger.YARN,
+                    },
+                ];
+            },
         },
     ];
     return inquirer_1.prompt(CREATE_QUESTIONS);

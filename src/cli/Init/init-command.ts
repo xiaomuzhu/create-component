@@ -1,16 +1,18 @@
 import * as glob from 'glob'
+import * as _ from 'lodash'
 import * as memFs from 'mem-fs'
 import * as editor from 'mem-fs-editor'
 import utils, { exec, LogType } from '../../utils/index'
 import { log } from '../../utils/log'
-import { IScaffoldType } from '../../utils/tools'
+import { FrameworkType, Language } from '../../utils/tools'
 
 export interface IOptions {
   proName: string
   proPath: string
   dest: string
   projectType: string
-  scaffoldType: IScaffoldType
+  frameworkType: FrameworkType
+  projectLanguage: Language
   title: string
 }
 
@@ -28,14 +30,24 @@ export class InitCommand {
   }
 
   private async copyScaffold() {
-    const { proName, proPath, scaffoldType } = this.options
+    const { proName, proPath, projectLanguage, frameworkType } = this.options
+
+    const scaffoldType = {
+      FrameworkType: frameworkType,
+      Language: projectLanguage,
+    }
 
     // 内存管理
     const store = memFs.create()
     const fsEditor = editor.create(store)
 
+    const globOptions = {
+      globOptions: {
+        dot: true,
+      },
+    }
     // 拷贝脚手架
-    fsEditor.copyTpl(utils.getScaffoldPath(scaffoldType), proPath, this.options)
+    fsEditor.copyTpl(utils.getScaffoldPath(scaffoldType), proPath, this.options, {}, globOptions)
 
     return new Promise((resolve, reject) => {
       // 保存
@@ -45,6 +57,7 @@ export class InitCommand {
 
         const files = glob.sync('**', {
           cwd: proPath,
+          dot: true,
         })
         files.forEach(file => log.msg(LogType.COPY, file))
 

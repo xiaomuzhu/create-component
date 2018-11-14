@@ -4,7 +4,7 @@ declare const config: {
     cwd: string;
     src: string;
     dest: string;
-    pages: string;
+    version: string;
     packages: string;
     log: {
         verbose: boolean;

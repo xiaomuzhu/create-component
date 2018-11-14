@@ -5,7 +5,8 @@ import * as _ from 'lodash'
 import * as path from 'path'
 import config from '../../config'
 import utils, { log } from '../../utils'
-import { FrameworkType, Language } from './../../utils/tools'
+import { Manger } from '../../utils/tools'
+import { FrameworkType, Language, OpenSourceLicenseType } from './../../utils/tools'
 import { InitCommand, IOptions } from './init-command'
 
 export default {
@@ -133,6 +134,52 @@ function getOptions(proName: string): Promise<IOptions> {
       message: '请设置Author',
       name: 'author',
       default: process.env.USER,
+    },
+    {
+      type: 'input',
+      message: '请设置版本号',
+      name: 'proVersion',
+      default: config.version,
+    },
+    {
+      type: 'list',
+      message: '请选择开源证书',
+      name: 'license',
+      default: OpenSourceLicenseType.MIT,
+      choices: () => {
+        return [
+          {
+            name: 'MIT',
+            value: OpenSourceLicenseType.MIT,
+          },
+          {
+            name: 'BSD',
+            value: OpenSourceLicenseType.BSD,
+          },
+          {
+            name: 'Apache',
+            value: OpenSourceLicenseType.Apache,
+          },
+        ]
+      },
+    },
+    {
+      type: 'list',
+      message: '请选择包管理工具',
+      name: 'manger',
+      default: Manger.NPM,
+      choices: () => {
+        return [
+          {
+            name: 'npm',
+            value: Manger.NPM,
+          },
+          {
+            name: 'yarn',
+            value: Manger.YARN,
+          },
+        ]
+      },
     },
   ]
 

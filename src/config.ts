@@ -4,8 +4,8 @@ const config = {
   cwd: process.cwd(),
   src: 'src',
   dest: 'dist',
-  pages: '{{src}}/pages',
-  packages: 'packages', // wxc组件项目目录
+  version: '1.0.0',
+  packages: 'packages',
   log: {
     verbose: true, // 显示详细信息
     time: true, // 显示时间

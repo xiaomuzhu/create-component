@@ -27,16 +27,26 @@ class InitCommand {
     }
     copyScaffold() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { proName, proPath, scaffoldType } = this.options;
+            const { proName, proPath, projectLanguage, frameworkType } = this.options;
+            const scaffoldType = {
+                FrameworkType: frameworkType,
+                Language: projectLanguage,
+            };
             const store = memFs.create();
             const fsEditor = editor.create(store);
-            fsEditor.copyTpl(index_1.default.getScaffoldPath(scaffoldType), proPath, this.options);
+            const globOptions = {
+                globOptions: {
+                    dot: true,
+                },
+            };
+            fsEditor.copyTpl(index_1.default.getScaffoldPath(scaffoldType), proPath, this.options, {}, globOptions);
             return new Promise((resolve, reject) => {
                 fsEditor.commit(() => {
                     log_1.log.newline();
                     log_1.log.msg(index_1.LogType.CREATE, `项目 "${proName}" in "${proPath}"`);
                     const files = glob.sync('**', {
                         cwd: proPath,
+                        dot: true,
                     });
                     files.forEach(file => log_1.log.msg(index_1.LogType.COPY, file));
                     log_1.log.msg(index_1.LogType.COMPLETE, '项目已创建完成');

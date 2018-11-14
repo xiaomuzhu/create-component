@@ -6,7 +6,7 @@ const config = {
     cwd: process.cwd(),
     src: 'src',
     dest: 'dist',
-    pages: '{{src}}/pages',
+    version: '1.0.0',
     packages: 'packages',
     log: {
         verbose: true,

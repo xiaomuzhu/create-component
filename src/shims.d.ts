@@ -1,12 +1,22 @@
+import { Options as TemplateOptions } from 'ejs'
+import { IOptions as GlobOptions } from 'glob'
+
 declare module 'github-username'
 declare module 'conf'
 declare module 'git-config-path'
 declare module 'parse-git-config'
-declare module 'which'
 
 declare module 'mem-fs-editor' {
+  type Contents = string | Buffer
   type Store = any
+  type ProcessFunc = (contents: Buffer) => Contents
 
+  type Callback = (err: any) => any
+
+  interface ICopyOptions {
+    process?: ProcessFunc
+    globOptions?: GlobOptions
+  }
   interface IFsEditor {
     read(path: string, options?: { raw?: boolean; defaults?: string }): string
     write(path: string, content: string | Buffer): void
@@ -24,7 +34,13 @@ declare module 'mem-fs-editor' {
       to: string,
       options?: { process?: (contents: Buffer) => Buffer | string; globOptions?: any },
     ): void
-    copyTpl(from: string, to: string, context: any): void
+    copyTpl(
+      from: string,
+      to: string,
+      context: object,
+      templateOptions?: TemplateOptions,
+      copyOptions?: ICopyOptions,
+    ): void
     move(from: string, to: string, options?: { globOptions?: any }): void
     exists(path: string): boolean
     commit(callback: () => void): void

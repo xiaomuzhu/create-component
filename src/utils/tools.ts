@@ -6,7 +6,7 @@ import config from '../config'
  * 脚手架语言类型
  *
  * @export
- * @enum {number}
+ * @enum {string}
  */
 export enum Language {
   TypeScript = 'TypeScript',
@@ -17,7 +17,7 @@ export enum Language {
  * 框架模板类型
  *
  * @export
- * @enum {number}
+ * @enum {string}
  */
 export enum FrameworkType {
   React = 'React',
@@ -29,18 +29,29 @@ export enum FrameworkType {
  * 开源协议类型
  *
  * @export
- * @enum {number}
+ * @enum {string}
  */
-enum OpenSourceLicenseType {
+export enum OpenSourceLicenseType {
   BSD = 'BSD',
   MIT = 'MIT',
   Apache = 'Apache',
 }
 
+/**
+ * 包管理类型
+ *
+ * @export
+ * @enum {string}
+ */
+export enum Manger {
+  NPM = 'npm',
+  YARN = 'yarn',
+}
+
 export interface IScaffoldType {
   FrameworkType: FrameworkType
   Language: Language
-  OpenSourceLicenseType: OpenSourceLicenseType
+  // OpenSourceLicenseType: OpenSourceLicenseType
 }
 
 /**

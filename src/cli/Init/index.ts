@@ -30,6 +30,10 @@ export default {
         description: options.title || config.title,
         gitUrl: '',
         author: '',
+        useCommitlint: false,
+        usePrecommit: false,
+        useCommitizen: false,
+        useCHANGELOG: false,
       }
 
       options = _.merge(defaults, options)
@@ -179,6 +183,48 @@ function getOptions(proName: string): Promise<IOptions> {
             value: Manger.YARN,
           },
         ]
+      },
+    },
+    {
+      type: 'confirm',
+      message: '是否继续高级设置',
+      name: 'isContinue',
+      default: true,
+    },
+    {
+      type: 'confirm',
+      message: '是否使用precommit对提交代码进行检测',
+      name: 'usePrecommit',
+      default: true,
+      when: (answers: any) => {
+        return !!answers.isContinue
+      },
+    },
+    {
+      type: 'confirm',
+      message: '是否使用Commitizen规范commit message',
+      name: 'useCommitizen',
+      default: true,
+      when: (answers: any) => {
+        return !!answers.isContinue
+      },
+    },
+    {
+      type: 'confirm',
+      message: '是否使用Commitlint校验commit message',
+      name: 'useCommitlint',
+      default: true,
+      when: (answers: any) => {
+        return !!answers.isContinue
+      },
+    },
+    {
+      type: 'confirm',
+      message: '是否自动生成CHANGELOG',
+      name: 'useCHANGELOG',
+      default: true,
+      when: (answers: any) => {
+        return !!answers.isContinue
       },
     },
   ]

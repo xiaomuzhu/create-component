@@ -34,6 +34,10 @@ exports.default = {
                 description: options.title || config_1.default.title,
                 gitUrl: '',
                 author: '',
+                useCommitlint: false,
+                usePrecommit: false,
+                useCommitizen: false,
+                useCHANGELOG: false,
             };
             options = _.merge(defaults, options);
             const initCommand = new init_command_1.InitCommand(options);
@@ -180,6 +184,48 @@ function getOptions(proName) {
                     },
                 ];
             },
+        },
+        {
+            type: 'confirm',
+            message: '是否继续高级设置',
+            name: 'isContinue',
+            default: true
+        },
+        {
+            type: 'confirm',
+            message: '是否使用precommit对提交代码进行检测',
+            name: 'usePrecommit',
+            default: true,
+            when: (answers) => {
+                return !!answers.isContinue;
+            }
+        },
+        {
+            type: 'confirm',
+            message: '是否使用Commitizen规范commit message',
+            name: 'useCommitizen',
+            default: true,
+            when: (answers) => {
+                return !!answers.isContinue;
+            }
+        },
+        {
+            type: 'confirm',
+            message: '是否使用Commitlint校验commit message',
+            name: 'useCommitlint',
+            default: true,
+            when: (answers) => {
+                return !!answers.isContinue;
+            }
+        },
+        {
+            type: 'confirm',
+            message: '是否自动生成CHANGELOG',
+            name: 'useCHANGELOG',
+            default: true,
+            when: (answers) => {
+                return !!answers.isContinue;
+            }
         },
     ];
     return inquirer_1.prompt(CREATE_QUESTIONS);

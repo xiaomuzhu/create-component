@@ -1,4 +1,4 @@
-import { FrameworkType, Language } from '../../utils/tools';
+import { FrameworkType, Language, OpenSourceLicenseType } from '../../utils/tools';
 export interface IOptions {
     proName: string;
     proPath: string;
@@ -7,6 +7,8 @@ export interface IOptions {
     frameworkType: FrameworkType;
     projectLanguage: Language;
     title: string;
+    license: OpenSourceLicenseType;
+    useCommitlint: boolean;
 }
 export declare class InitCommand {
     options: IOptions;

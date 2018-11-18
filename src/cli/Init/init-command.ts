@@ -4,7 +4,7 @@ import * as memFs from 'mem-fs'
 import * as editor from 'mem-fs-editor'
 import utils, { exec, LogType } from '../../utils/index'
 import { log } from '../../utils/log'
-import { FrameworkType, Language } from '../../utils/tools'
+import { FrameworkType, Language, OpenSourceLicenseType } from '../../utils/tools'
 
 export interface IOptions {
   proName: string
@@ -14,6 +14,8 @@ export interface IOptions {
   frameworkType: FrameworkType
   projectLanguage: Language
   title: string
+  license: OpenSourceLicenseType
+  useCommitlint: boolean
 }
 
 export class InitCommand {
@@ -32,6 +34,12 @@ export class InitCommand {
   private async copyScaffold() {
     const { proName, proPath, projectLanguage, frameworkType } = this.options
 
+    const extraOptions = {
+      year: utils.getYear(),
+    }
+
+    const allOptions = _.merge(this.options, extraOptions)
+    console.log(allOptions)
     const scaffoldType = {
       FrameworkType: frameworkType,
       Language: projectLanguage,
@@ -47,8 +55,13 @@ export class InitCommand {
       },
     }
     // 拷贝脚手架
-    fsEditor.copyTpl(utils.getScaffoldPath(scaffoldType), proPath, this.options, {}, globOptions)
+    fsEditor.copyTpl(utils.getScaffoldPath(scaffoldType), proPath, allOptions, {}, globOptions)
 
+    await fsEditor.copyTpl(utils.getLicensePath(this.options.license), proPath, allOptions)
+
+    if (this.options.useCommitlint) {
+      await fsEditor.copyTpl(utils.getCommitLintPackagePath(), proPath, {}, {}, globOptions)
+    }
     return new Promise((resolve, reject) => {
       // 保存
       fsEditor.commit(() => {

@@ -72,3 +72,15 @@ export function getScaffoldPath(scaffoldType: IScaffoldType, filePath: string = 
 export function getDestProjectPath(projectName: string, filePath: string = '') {
   return path.join(config.cwd, projectName, filePath)
 }
+
+export function getLicensePath(licenseType: string) {
+  return path.join(__dirname, `../../scaffold/common/LICENSE/${licenseType}`)
+}
+
+export function getCommitLintPackagePath() {
+  return path.join(__dirname, `../../scaffold/common/commitlint`)
+}
+
+export function getYear() {
+  return new Date().getFullYear()
+}

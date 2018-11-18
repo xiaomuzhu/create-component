@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const glob = require("glob");
+const _ = require("lodash");
 const memFs = require("mem-fs");
 const editor = require("mem-fs-editor");
 const index_1 = require("../../utils/index");
@@ -28,6 +29,11 @@ class InitCommand {
     copyScaffold() {
         return __awaiter(this, void 0, void 0, function* () {
             const { proName, proPath, projectLanguage, frameworkType } = this.options;
+            const extraOptions = {
+                year: index_1.default.getYear()
+            };
+            const allOptions = _.merge(this.options, extraOptions);
+            console.log(allOptions);
             const scaffoldType = {
                 FrameworkType: frameworkType,
                 Language: projectLanguage,
@@ -39,7 +45,11 @@ class InitCommand {
                     dot: true,
                 },
             };
-            fsEditor.copyTpl(index_1.default.getScaffoldPath(scaffoldType), proPath, this.options, {}, globOptions);
+            fsEditor.copyTpl(index_1.default.getScaffoldPath(scaffoldType), proPath, allOptions, {}, globOptions);
+            yield fsEditor.copyTpl(index_1.default.getLicensePath(this.options.license), proPath, allOptions);
+            if (this.options.useCommitlint) {
+                yield fsEditor.copyTpl(index_1.default.getCommitLintPackagePath(), proPath, {}, {}, globOptions);
+            }
             return new Promise((resolve, reject) => {
                 fsEditor.commit(() => {
                     log_1.log.newline();

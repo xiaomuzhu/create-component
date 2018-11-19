@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:prettier/recommended"
+  ],
+  "env": {"browser": true, "es6": true, "node": true, "jest/globals": true},
+  "plugins": [
+    "react",
+    "jest"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "space-before-function-paren": 0,
+    "react/jsx-boolean-value": 0
+  }
+}

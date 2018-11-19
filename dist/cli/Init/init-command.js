@@ -12,6 +12,7 @@ const glob = require("glob");
 const _ = require("lodash");
 const memFs = require("mem-fs");
 const editor = require("mem-fs-editor");
+const shell = require("shelljs");
 const index_1 = require("../../utils/index");
 const log_1 = require("../../utils/log");
 class InitCommand {
@@ -28,7 +29,7 @@ class InitCommand {
     }
     copyScaffold() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { proName, proPath, projectLanguage, frameworkType } = this.options;
+            const { proName, proPath, projectLanguage, frameworkType, usePrecommit } = this.options;
             const extraOptions = {
                 year: index_1.default.getYear(),
             };
@@ -45,9 +46,9 @@ class InitCommand {
                 },
             };
             fsEditor.copyTpl(index_1.default.getScaffoldPath(scaffoldType), proPath, allOptions, {}, globOptions);
-            yield fsEditor.copyTpl(index_1.default.getLicensePath(this.options.license), proPath, allOptions);
+            fsEditor.copyTpl(index_1.default.getLicensePath(this.options.license), proPath, allOptions);
             if (this.options.useCommitlint) {
-                yield fsEditor.copyTpl(index_1.default.getCommitLintPackagePath(), proPath, {}, {}, globOptions);
+                fsEditor.copyTpl(index_1.default.getCommitLintPackagePath(), proPath, {}, {}, globOptions);
             }
             return new Promise((resolve, reject) => {
                 fsEditor.commit(() => {
@@ -58,6 +59,9 @@ class InitCommand {
                         dot: true,
                     });
                     files.forEach(file => log_1.log.msg(index_1.LogType.COPY, file));
+                    if (usePrecommit) {
+                        this.gitInit();
+                    }
                     log_1.log.msg(index_1.LogType.COMPLETE, '项目已创建完成');
                     resolve();
                 });
@@ -72,6 +76,18 @@ class InitCommand {
             log_1.log.msg(index_1.LogType.INFO, '安装中, 请耐心等待...');
             yield index_1.exec('npm', ['install'], true, {
                 cwd: proPath,
+            });
+        });
+    }
+    gitInit() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { proPath } = this.options;
+            if (!shell.which('git')) {
+                shell.echo('Sorry, this script requires git');
+                shell.exit(1);
+            }
+            yield index_1.exec('git', ['init'], true, {
+                cwd: proPath
             });
         });
     }

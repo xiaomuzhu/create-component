@@ -9,6 +9,7 @@ export interface IOptions {
     title: string;
     license: OpenSourceLicenseType;
     useCommitlint: boolean;
+    usePrecommit: boolean;
 }
 export declare class InitCommand {
     options: IOptions;
@@ -16,4 +17,5 @@ export declare class InitCommand {
     run(): Promise<void>;
     private copyScaffold;
     private npmInstall;
+    private gitInit;
 }

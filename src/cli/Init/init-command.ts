@@ -39,7 +39,6 @@ export class InitCommand {
     }
 
     const allOptions = _.merge(this.options, extraOptions)
-    console.log(allOptions)
     const scaffoldType = {
       FrameworkType: frameworkType,
       Language: projectLanguage,

@@ -30,10 +30,9 @@ class InitCommand {
         return __awaiter(this, void 0, void 0, function* () {
             const { proName, proPath, projectLanguage, frameworkType } = this.options;
             const extraOptions = {
-                year: index_1.default.getYear()
+                year: index_1.default.getYear(),
             };
             const allOptions = _.merge(this.options, extraOptions);
-            console.log(allOptions);
             const scaffoldType = {
                 FrameworkType: frameworkType,
                 Language: projectLanguage,

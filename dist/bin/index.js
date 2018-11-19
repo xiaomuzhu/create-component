@@ -23,7 +23,6 @@ index_1.default.forEach(command => {
         cmd.alias(command.alias);
     }
     if (command.usage) {
-        console.log(command.name);
         cmd.usage(command.usage);
     }
     if (command.description) {

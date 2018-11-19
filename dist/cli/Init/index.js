@@ -189,7 +189,7 @@ function getOptions(proName) {
             type: 'confirm',
             message: '是否继续高级设置',
             name: 'isContinue',
-            default: true
+            default: true,
         },
         {
             type: 'confirm',
@@ -198,7 +198,7 @@ function getOptions(proName) {
             default: true,
             when: (answers) => {
                 return !!answers.isContinue;
-            }
+            },
         },
         {
             type: 'confirm',
@@ -207,7 +207,7 @@ function getOptions(proName) {
             default: true,
             when: (answers) => {
                 return !!answers.isContinue;
-            }
+            },
         },
         {
             type: 'confirm',
@@ -216,7 +216,7 @@ function getOptions(proName) {
             default: true,
             when: (answers) => {
                 return !!answers.isContinue;
-            }
+            },
         },
         {
             type: 'confirm',
@@ -225,7 +225,7 @@ function getOptions(proName) {
             default: true,
             when: (answers) => {
                 return !!answers.isContinue;
-            }
+            },
         },
     ];
     return inquirer_1.prompt(CREATE_QUESTIONS);

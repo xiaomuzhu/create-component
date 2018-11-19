@@ -23,7 +23,6 @@ commands.forEach(command => {
 
   // set usage
   if (command.usage) {
-    console.log(command.name)
     cmd.usage(command.usage)
   }
 

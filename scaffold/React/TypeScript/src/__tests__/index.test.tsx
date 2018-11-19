@@ -1,7 +1,7 @@
-import React from 'react'
 import { configure, shallow } from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import ExampleComponent from './index'
+import * as Adapter from 'enzyme-adapter-react-16'
+import * as React from 'react'
+import ExampleComponent from '../'
 
 configure({ adapter: new Adapter() })
 
@@ -17,7 +17,7 @@ describe('ExampleComponent', () => {
   const { wrapper } = setup()
 
   it('is truthy', () => {
-    expect(wrapper).toBeTruthy()
+    expect(ExampleComponent).toBeTruthy()
   })
 
   it('ExampleComponent should render Text', () => {

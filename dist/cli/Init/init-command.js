@@ -87,7 +87,7 @@ class InitCommand {
                 shell.exit(1);
             }
             yield index_1.exec('git', ['init'], true, {
-                cwd: proPath
+                cwd: proPath,
             });
         });
     }

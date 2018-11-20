@@ -18,6 +18,14 @@ export interface IOptions {
   license: OpenSourceLicenseType
   useCommitlint: boolean
   usePrecommit: boolean
+  gitUrl: string
+  author: string
+  description: string
+  useCommitizen: boolean
+  useCHANGELOG: boolean
+  proVersion: string
+  manger: string
+  isContinue: boolean
 }
 
 export class InitCommand {

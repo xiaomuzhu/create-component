@@ -44,3 +44,17 @@ function getYear() {
     return new Date().getFullYear();
 }
 exports.getYear = getYear;
+function camelize(str) {
+    return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''));
+}
+function cleanArgs(cmd) {
+    const args = {};
+    cmd.options.forEach((o) => {
+        const key = camelize(o.long.replace(/^--/, ''));
+        if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
+            args[key] = cmd[key];
+        }
+    });
+    return args;
+}
+exports.cleanArgs = cleanArgs;

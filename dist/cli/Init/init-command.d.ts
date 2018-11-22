@@ -2,8 +2,6 @@ import { FrameworkType, Language, OpenSourceLicenseType } from '../../utils/tool
 export interface IOptions {
     proName: string;
     proPath: string;
-    dest: string;
-    projectType: string;
     frameworkType: FrameworkType;
     projectLanguage: Language;
     title: string;
@@ -18,6 +16,8 @@ export interface IOptions {
     proVersion: string;
     manger: string;
     isContinue: boolean;
+    noInstall: boolean;
+    defaults: boolean;
 }
 export declare class InitCommand {
     options: IOptions;

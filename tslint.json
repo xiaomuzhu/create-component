@@ -15,6 +15,7 @@
     },
     "member-access": [ true, "no-public" ],
     "interface-name": false,
+    "no-shadowed-variable":false,
     "member-ordering": [
       true,
       {

@@ -1,6 +1,6 @@
 declare const config: {
     title: string;
-    projectType: string;
+    description: string;
     cwd: string;
     src: string;
     dest: string;

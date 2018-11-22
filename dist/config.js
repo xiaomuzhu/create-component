@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const config = {
     title: 'create-component',
-    projectType: '',
+    description: 'a component',
     cwd: process.cwd(),
     src: 'src',
     dest: 'dist',

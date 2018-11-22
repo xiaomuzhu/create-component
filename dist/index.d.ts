@@ -3,7 +3,7 @@ declare const _default: {
     alias: string;
     usage: string;
     description: string;
-    options: never[];
-    action: (proName: string) => Promise<void>;
+    options: string[][];
+    action: (proName: string, cmd: import("src/cli/Init").InitCMDOptions) => Promise<void>;
 }[];
 export default _default;

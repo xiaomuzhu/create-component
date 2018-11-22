@@ -70,6 +70,8 @@ export class InitCommand {
 
     fsEditor.copyTpl(utils.getLicensePath(this.options.license), proPath, allOptions)
 
+    fsEditor.copyTpl(utils.getReadmePath(), proPath, allOptions)
+
     if (this.options.useCommitlint) {
       fsEditor.copyTpl(utils.getCommitLintPackagePath(), proPath, {}, {}, globOptions)
     }

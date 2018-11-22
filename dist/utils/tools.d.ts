@@ -23,6 +23,7 @@ export interface IScaffoldType {
 export declare function getScaffoldPath(scaffoldType: IScaffoldType, filePath?: string): string;
 export declare function getDestProjectPath(projectName: string, filePath?: string): string;
 export declare function getLicensePath(licenseType: string): string;
+export declare function getReadmePath(): string;
 export declare function getCommitLintPackagePath(): string;
 export declare function getYear(): number;
 export declare function cleanArgs(cmd: any): {};

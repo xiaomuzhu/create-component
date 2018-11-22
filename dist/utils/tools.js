@@ -36,6 +36,10 @@ function getLicensePath(licenseType) {
     return path.join(__dirname, `../../scaffold/common/LICENSE/${licenseType}`);
 }
 exports.getLicensePath = getLicensePath;
+function getReadmePath() {
+    return path.join(__dirname, '../../scaffold/common/readme');
+}
+exports.getReadmePath = getReadmePath;
 function getCommitLintPackagePath() {
     return path.join(__dirname, `../../scaffold/common/commitlint`);
 }

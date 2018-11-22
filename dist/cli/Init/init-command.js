@@ -49,6 +49,7 @@ class InitCommand {
             };
             fsEditor.copyTpl(index_1.default.getScaffoldPath(scaffoldType), proPath, allOptions, {}, globOptions);
             fsEditor.copyTpl(index_1.default.getLicensePath(this.options.license), proPath, allOptions);
+            fsEditor.copyTpl(index_1.default.getReadmePath(), proPath, allOptions);
             if (this.options.useCommitlint) {
                 fsEditor.copyTpl(index_1.default.getCommitLintPackagePath(), proPath, {}, {}, globOptions);
             }

@@ -1,10 +1,7 @@
 import { Options as TemplateOptions } from 'ejs'
 import { IOptions as GlobOptions } from 'glob'
 
-declare module 'github-username'
 declare module 'conf'
-declare module 'git-config-path'
-declare module 'parse-git-config'
 
 declare module 'mem-fs-editor' {
   type Contents = string | Buffer

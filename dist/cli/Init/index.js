@@ -38,6 +38,7 @@ exports.default = {
                 const options = _.merge(default_1.default, {
                     proName: proName,
                     proPath: path.join(config_1.default.cwd, proName),
+                    gitUrl: `${config_1.default.gitUrl}/${proName}`,
                 }, CMDoptions);
                 const initCommand = new init_command_1.InitCommand(options);
                 yield initCommand.run();
@@ -47,6 +48,7 @@ exports.default = {
                 const options = _.merge(default_full_1.fullOptions, {
                     proName: proName,
                     proPath: path.join(config_1.default.cwd, proName),
+                    gitUrl: `${config_1.default.gitUrl}/${proName}`,
                 }, CMDoptions);
                 const initCommand = new init_command_1.InitCommand(options);
                 yield initCommand.run();
@@ -58,8 +60,8 @@ exports.default = {
                 proName: proName,
                 title: config_1.default.title,
                 description: options.title || config_1.default.title,
-                gitUrl: '',
-                author: '',
+                gitUrl: `${config_1.default.gitUrl}/${proName}`,
+                author: config_1.default.author,
                 useCommitlint: false,
                 usePrecommit: false,
                 useCommitizen: false,

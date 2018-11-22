@@ -37,6 +37,7 @@ export default {
           {
             proName: proName,
             proPath: path.join(config.cwd, proName),
+            gitUrl: `${config.gitUrl}/${proName}`,
           },
           CMDoptions as InitCMDOptions,
         )
@@ -50,6 +51,7 @@ export default {
           {
             proName: proName,
             proPath: path.join(config.cwd, proName),
+            gitUrl: `${config.gitUrl}/${proName}`,
           },
           CMDoptions as InitCMDOptions,
         )
@@ -70,8 +72,8 @@ export default {
         proName: proName,
         title: config.title,
         description: options.title || config.title,
-        gitUrl: '',
-        author: '',
+        gitUrl: `${config.gitUrl}/${proName}`,
+        author: config.author,
         useCommitlint: false,
         usePrecommit: false,
         useCommitizen: false,

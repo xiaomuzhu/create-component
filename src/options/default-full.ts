@@ -6,8 +6,7 @@ import { OpenSourceLicenseType } from './../utils/tools'
 export const fullOptions = {
   title: config.title,
   description: config.description,
-  gitUrl: '',
-  author: '',
+  author: config.author,
   useCommitlint: true,
   usePrecommit: true,
   useCommitizen: true,

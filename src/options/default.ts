@@ -5,8 +5,7 @@ import { OpenSourceLicenseType } from './../utils/tools'
 export default {
   title: config.title,
   description: config.description,
-  gitUrl: '',
-  author: '',
+  author: config.author,
   useCommitlint: false,
   usePrecommit: false,
   useCommitizen: false,

@@ -2,6 +2,8 @@ declare const config: {
     title: string;
     description: string;
     cwd: string;
+    author: any;
+    gitUrl: string;
     src: string;
     dest: string;
     version: string;

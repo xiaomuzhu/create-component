@@ -1,7 +1,11 @@
+import { getUser } from './utils/get-default-params'
+
 const config = {
   title: 'create-component',
   description: 'a component',
   cwd: process.cwd(),
+  author: getUser().name,
+  gitUrl: `https://github.com/${getUser().name}`,
   src: 'src',
   dest: 'dist',
   version: '1.0.0',

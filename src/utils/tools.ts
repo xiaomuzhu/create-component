@@ -84,3 +84,20 @@ export function getCommitLintPackagePath() {
 export function getYear() {
   return new Date().getFullYear()
 }
+
+function camelize(str: string) {
+  return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''))
+}
+
+export function cleanArgs(cmd: any) {
+  const args = {}
+  cmd.options.forEach((o: any) => {
+    const key = camelize(o.long.replace(/^--/, ''))
+    // if an option is not present and Command has a method with the same name
+    // it should not be copied
+    if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
+      args[key] = cmd[key]
+    }
+  })
+  return args
+}

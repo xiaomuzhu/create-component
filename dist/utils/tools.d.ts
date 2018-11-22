@@ -25,3 +25,4 @@ export declare function getDestProjectPath(projectName: string, filePath?: strin
 export declare function getLicensePath(licenseType: string): string;
 export declare function getCommitLintPackagePath(): string;
 export declare function getYear(): number;
+export declare function cleanArgs(cmd: any): {};

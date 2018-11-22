@@ -22,7 +22,9 @@ class InitCommand {
     run() {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.copyScaffold();
-            yield this.npmInstall();
+            if (!this.options.noInstall) {
+                yield this.npmInstall();
+            }
             log_1.log.newline();
             log_1.log.msg(index_1.LogType.TIP, `项目创建完成`);
         });

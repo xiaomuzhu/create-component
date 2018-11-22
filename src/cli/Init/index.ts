@@ -4,19 +4,61 @@ import { prompt, Question } from 'inquirer'
 import * as _ from 'lodash'
 import * as path from 'path'
 import config from '../../config'
+import defaultsOptions from '../../options/default'
+import { fullOptions } from '../../options/default-full'
 import utils, { log } from '../../utils'
-import { Manger } from '../../utils/tools'
+import { cleanArgs, Manger } from '../../utils/tools'
 import { FrameworkType, Language, OpenSourceLicenseType } from './../../utils/tools'
 import { InitCommand, IOptions } from './init-command'
+
+export interface InitCMDOptions {
+  defaults: boolean
+  noInstall: boolean
+  full: boolean
+}
 
 export default {
   name: 'init [name]',
   alias: '',
   usage: '[name]',
   description: '创建组件',
-  options: [],
-  action: async (proName: string) => {
+  options: [
+    ['-d, --defaults', '忽略提示符并使用默认预设选项'],
+    ['-n, --noInstall', '跳过 npm install'],
+    ['-f, --full', '忽略提示符并使用全部默认预设选项'],
+  ],
+  action: async (proName: string, cmd: InitCMDOptions) => {
     try {
+      const CMDoptions = cleanArgs(cmd)
+      console.log(CMDoptions)
+      if ((CMDoptions as InitCMDOptions).defaults) {
+        const options = _.merge(
+          defaultsOptions,
+          {
+            proName: proName,
+            proPath: path.join(config.cwd, proName),
+          },
+          CMDoptions as InitCMDOptions,
+        )
+
+        const initCommand = new InitCommand(options)
+        await initCommand.run()
+        return
+      } else if ((CMDoptions as InitCMDOptions).full) {
+        const options = _.merge(
+          fullOptions,
+          {
+            proName: proName,
+            proPath: path.join(config.cwd, proName),
+          },
+          CMDoptions as InitCMDOptions,
+        )
+
+        const initCommand = new InitCommand(options)
+        await initCommand.run()
+        return
+      }
+
       // 获取 answers
       let options = await getOptions(proName)
 
@@ -34,10 +76,11 @@ export default {
         usePrecommit: false,
         useCommitizen: false,
         useCHANGELOG: false,
+        noInstall: false,
+        defaults: false,
       }
 
       options = _.merge(defaults, options)
-
       const initCommand = new InitCommand(options)
       await initCommand.run()
     } catch (error) {

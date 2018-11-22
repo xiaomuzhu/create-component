@@ -39,13 +39,6 @@ commands.forEach(command => {
     })
   }
 
-  // set on
-  // if (_.isObject(command.on)) {
-  //   _.forIn(command.on, (value, key) => {
-  //     cmd.on(key, value)
-  //   })
-  // }
-
   // set action
   if (command.action) {
     cmd.action(async (...args) => {

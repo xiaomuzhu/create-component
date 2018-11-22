@@ -14,6 +14,8 @@ const inquirer_1 = require("inquirer");
 const _ = require("lodash");
 const path = require("path");
 const config_1 = require("../../config");
+const default_1 = require("../../options/default");
+const default_full_1 = require("../../options/default-full");
 const utils_1 = require("../../utils");
 const tools_1 = require("../../utils/tools");
 const tools_2 = require("./../../utils/tools");
@@ -23,9 +25,33 @@ exports.default = {
     alias: '',
     usage: '[name]',
     description: '创建组件',
-    options: [],
-    action: (proName) => __awaiter(this, void 0, void 0, function* () {
+    options: [
+        ['-d, --defaults', '忽略提示符并使用默认预设选项'],
+        ['-n, --noInstall', '跳过 npm install'],
+        ['-f, --full', '忽略提示符并使用全部默认预设选项'],
+    ],
+    action: (proName, cmd) => __awaiter(this, void 0, void 0, function* () {
         try {
+            const CMDoptions = tools_1.cleanArgs(cmd);
+            console.log(CMDoptions);
+            if (CMDoptions.defaults) {
+                const options = _.merge(default_1.default, {
+                    proName: proName,
+                    proPath: path.join(config_1.default.cwd, proName),
+                }, CMDoptions);
+                const initCommand = new init_command_1.InitCommand(options);
+                yield initCommand.run();
+                return;
+            }
+            else if (CMDoptions.full) {
+                const options = _.merge(default_full_1.fullOptions, {
+                    proName: proName,
+                    proPath: path.join(config_1.default.cwd, proName),
+                }, CMDoptions);
+                const initCommand = new init_command_1.InitCommand(options);
+                yield initCommand.run();
+                return;
+            }
             let options = yield getOptions(proName);
             proName = proName || path.basename(options.proPath);
             const defaults = {
@@ -38,6 +64,8 @@ exports.default = {
                 usePrecommit: false,
                 useCommitizen: false,
                 useCHANGELOG: false,
+                noInstall: false,
+                defaults: false,
             };
             options = _.merge(defaults, options);
             const initCommand = new init_command_1.InitCommand(options);

@@ -30,7 +30,6 @@ export default {
   action: async (proName: string, cmd: InitCMDOptions) => {
     try {
       const CMDoptions = cleanArgs(cmd)
-      console.log(CMDoptions)
       if ((CMDoptions as InitCMDOptions).defaults) {
         const options = _.merge(
           defaultsOptions,

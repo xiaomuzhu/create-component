@@ -68,12 +68,14 @@ export class InitCommand {
     // 拷贝脚手架
     fsEditor.copyTpl(utils.getScaffoldPath(scaffoldType), proPath, allOptions, {}, globOptions)
 
-    fsEditor.copyTpl(utils.getLicensePath(this.options.license), proPath, allOptions)
+    fsEditor.copyTpl(utils.getCommonPath('LICENSE', this.options.license), proPath, allOptions)
 
-    fsEditor.copyTpl(utils.getReadmePath(), proPath, allOptions)
+    fsEditor.copyTpl(utils.getCommonPath('readme'), proPath, allOptions)
+
+    fsEditor.copyTpl(utils.getCommonPath('setup'), proPath, allOptions)
 
     if (this.options.useCommitlint) {
-      fsEditor.copyTpl(utils.getCommitLintPackagePath(), proPath, {}, {}, globOptions)
+      fsEditor.copyTpl(utils.getCommonPath('commitlint'), proPath, {}, {}, globOptions)
     }
     return new Promise((resolve, reject) => {
       // 保存

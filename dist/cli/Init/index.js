@@ -33,7 +33,6 @@ exports.default = {
     action: (proName, cmd) => __awaiter(this, void 0, void 0, function* () {
         try {
             const CMDoptions = tools_1.cleanArgs(cmd);
-            console.log(CMDoptions);
             if (CMDoptions.defaults) {
                 const options = _.merge(default_1.default, {
                     proName: proName,

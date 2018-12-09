@@ -73,16 +73,20 @@ export function getDestProjectPath(projectName: string, filePath: string = '') {
   return path.join(config.cwd, projectName, filePath)
 }
 
-export function getLicensePath(licenseType: string) {
-  return path.join(__dirname, `../../scaffold/common/LICENSE/${licenseType}`)
-}
+// export function getLicensePath(licenseType: string) {
+//   return path.join(__dirname, `../../scaffold/common/LICENSE/${licenseType}`)
+// }
 
-export function getReadmePath() {
-  return path.join(__dirname, '../../scaffold/common/readme')
-}
+// export function getReadmePath() {
+//   return path.join(__dirname, '../../scaffold/common/readme')
+// }
 
-export function getCommitLintPackagePath() {
-  return path.join(__dirname, `../../scaffold/common/commitlint`)
+// export function getCommitLintPackagePath() {
+//   return path.join(__dirname, `../../scaffold/common/commitlint`)
+// }
+
+export function getCommonPath(folder: string, file: string = '') {
+  return path.join(__dirname, `../../scaffold/common/${folder}/${file}`)
 }
 
 export function getYear() {

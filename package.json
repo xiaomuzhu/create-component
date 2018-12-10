@@ -1,5 +1,5 @@
 {
-  "name": "create-component",
+  "name": "create-component-cli",
   "version": "0.0.1",
   "description": "CLI for bootstrapping react component",
   "main": "index.js",
@@ -24,6 +24,7 @@
   ],
   "author": "xiaomuzhu",
   "license": "MIT",
+  "homepage": "https://github.com/xiaomuzhu/create-component",
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"

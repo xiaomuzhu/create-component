@@ -10,7 +10,7 @@
     "test": "npm run clean && jest",
     "format": "prettier --write --config .prettierrc src/*.ts",
     "commit": "git-cz",
-    "lint": "tslint -p src/**/*.ts",
+    "lint": "tslint --fix src/**/*.ts",
     "release": "standard-version",
     "watch": "tsc -w",
     "build": "tsc",

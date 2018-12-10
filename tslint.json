@@ -3,6 +3,11 @@
     "tslint:recommended",
     "tslint-config-prettier"
   ],
+  "linterOptions": {
+      "exclude": [
+        "bin/*.ts"
+      ]
+  },
   "rules": {
     "align": [ true, "statements", "members" ],
     "ban-types": {

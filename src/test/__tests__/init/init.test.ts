@@ -9,7 +9,12 @@ const TEST_DIR = 'testTemplateDir'
 const tempDir = path.join(process.cwd(), TEST_DIR)
 
 beforeEach(() => {
-  fs.ensureDir(tempDir)
+  fs.ensureDir(tempDir).then(() => {
+    console.log('success!')
+  }).catch(err => {
+    console.error(err)
+  })
+
   process.chdir(tempDir)
 })
 

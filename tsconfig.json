@@ -25,6 +25,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "plugins": [{ "name": "tslint-language-service" }]
   },
-  "exclude": ["dist", "node_modules", "**/*.spec.ts", "src/samples/*"],
+  "exclude": ["dist", "node_modules", "**/*.spec.ts"],
   "include": ["src/**/*"]
 }

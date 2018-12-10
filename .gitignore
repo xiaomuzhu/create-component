@@ -77,3 +77,4 @@ typings/
 
 dist
 testTemplateDir
+.DS_Store

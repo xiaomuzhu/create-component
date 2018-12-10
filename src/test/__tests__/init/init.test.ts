@@ -5,19 +5,17 @@ import 'jest'
 import * as path from 'path'
 
 const cwd = process.cwd()
-console.log(cwd)
 const TEST_DIR = 'testTemplateDir'
 const tempDir = path.join(process.cwd(), TEST_DIR)
 
 beforeEach(() => {
-  fs.ensureDir(tempDir)
-  process.chdir(tempDir)
+  fs.ensureDir(tempDir).then(() => {
+    process.chdir(tempDir)
+  })
 })
 
 test('spins up a min app and performs various checks', async () => {
   await execa.shell(`node ${cwd}/index.js init ${TEST_DIR} -d -n`)
-
-  process.chdir(TEST_DIR)
 
   const pkg = JSON.parse(jetpack.read('./package.json')!)
 

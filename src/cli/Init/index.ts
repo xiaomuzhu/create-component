@@ -177,12 +177,15 @@ function getOptions(proName: string): Promise<IOptions> {
       type: 'input',
       message: '请设置GIT仓库地址',
       name: 'gitUrl',
+      default: (answers: any) => {
+        return `${config.gitUrl}/${answers.title}`
+      },
     },
     {
       type: 'input',
       message: '请设置Author',
       name: 'author',
-      default: process.env.USER,
+      default: config.author,
     },
     {
       type: 'input',

@@ -162,12 +162,15 @@ function getOptions(proName) {
             type: 'input',
             message: '请设置GIT仓库地址',
             name: 'gitUrl',
+            default: (answers) => {
+                return `${config_1.default.gitUrl}/${answers.title}`;
+            },
         },
         {
             type: 'input',
             message: '请设置Author',
             name: 'author',
-            default: process.env.USER,
+            default: config_1.default.author,
         },
         {
             type: 'input',

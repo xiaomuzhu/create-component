@@ -22,7 +22,7 @@
         "test:w": "jest --watch",
         "build": "rollup -c",
         "start": "rollup -c -w",
-        "prepare": "<%= manger %> run build",
+        "prepare": "<%= manger %> run format && <%= manger %> run build",
         "example": "node setup.js",
         "format": "prettier --write '{.,__tests__,src/**}/*.{ts,tsx,css,less,scss}'",
         "style:lint": "stylelint src/**/*.{scss,css,less} --fix",
@@ -49,6 +49,10 @@
         <% if (!!useCommitlint) { %>
         "@commitlint/cli": "^7.2.1",
         "@commitlint/config-conventional": "^7.1.2",
+        <% } %>
+        <% if (!!cssinjs) { %>
+          "@types/styled-components": "^4.1.2",
+          "styled-components": "^4.1.2",
         <% } %>
         "@svgr/rollup": "^4.0.3",
         <% if (useCommitizen) { %>

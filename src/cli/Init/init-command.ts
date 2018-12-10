@@ -16,6 +16,7 @@ export interface IOptions {
   license: OpenSourceLicenseType
   useCommitlint: boolean
   usePrecommit: boolean
+  cssinjs: boolean
   gitUrl: string
   author: string
   description: string
@@ -44,7 +45,7 @@ export class InitCommand {
   }
 
   private async copyScaffold() {
-    const { proName, proPath, projectLanguage, frameworkType, usePrecommit } = this.options
+    const { proName, proPath, projectLanguage, frameworkType, usePrecommit, cssinjs } = this.options
 
     const extraOptions = {
       year: utils.getYear(),
@@ -73,6 +74,10 @@ export class InitCommand {
     fsEditor.copyTpl(utils.getCommonPath('readme'), proPath, allOptions)
 
     fsEditor.copyTpl(utils.getCommonPath('setup'), proPath, allOptions)
+
+    if (!cssinjs) {
+      fsEditor.copyTpl(utils.getCommonPath('css'), `${proPath}/src/`, allOptions)
+    }
 
     if (this.options.useCommitlint) {
       fsEditor.copyTpl(utils.getCommonPath('commitlint'), proPath, {}, {}, globOptions)

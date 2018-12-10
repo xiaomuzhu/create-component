@@ -8,6 +8,7 @@ export interface IOptions {
     license: OpenSourceLicenseType;
     useCommitlint: boolean;
     usePrecommit: boolean;
+    cssinjs: boolean;
     gitUrl: string;
     author: string;
     description: string;

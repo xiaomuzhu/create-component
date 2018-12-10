@@ -22,7 +22,7 @@
         "test:w": "jest --watch",
         "build": "rollup -c",
         "start": "rollup -c -w",
-        "prepare": "<%= manger %> run build",
+        "prepare": "<%= manger %> run format && <%= manger %> run build",
         "example": "node setup.js",
         "format": "prettier --write '{.,__tests__,src/**}/*.{js,jsx,css,less,scss}'",
         "style:lint": "stylelint src/**/*.{scss,css,less} --fix",
@@ -38,7 +38,9 @@
     "peerDependencies": {
         "prop-types": "^15.5.4",
         "react": "^15.0.0 || ^16.0.0",
-        "react-dom": "^15.0.0 || ^16.0.0"
+        "react-dom": "^15.0.0 || ^16.0.0"<% if (!!cssinjs) { %>,
+        "styled-components": ">= 3"
+        <% } %>
     },
     "devDependencies": {
         "@babel/cli": "^7.1.5",
@@ -62,6 +64,9 @@
         <% if (useCommitizen) { %>
         "commitizen": "^3.0.4",
         "cz-conventional-changelog": "^2.1.0",
+        <% } %>
+        <% if (!!cssinjs) { %>
+          "styled-components": "^4.1.2",
         <% } %>
         "cross-env": "^5.2.0",
         "enzyme": "^3.7.0",

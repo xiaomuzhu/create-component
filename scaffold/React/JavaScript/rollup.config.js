@@ -15,13 +15,20 @@ export default {
       file: pkg.main,
       format: 'cjs',
       sourcemap: true,
+      <% if (!!cssinjs) { %>
+        globals: { "styled-components": "styled" }
+      <% } %>
     },
     {
       file: pkg.module,
       format: 'es',
       sourcemap: true,
+      <% if (!!cssinjs) { %>
+        globals: { "styled-components": "styled" }
+      <% } %>
     },
   ],
+  external: ["react", "react-dom", "prop-types", <% if (!!cssinjs) { %>"styled-components"<% } %>],
   plugins: [
     external(),
     postcss({
@@ -33,6 +40,15 @@ export default {
       exclude: 'node_modules/**',
     }),
     resolve(),
-    commonjs(),
+    <% if (!!cssinjs) { %>
+      commonjs({
+        include: "node_modules/**",
+        namedExports: {
+          "node_modules/react-is/index.js": ["isValidElementType"]
+        }
+      }),
+    <% } else { %>
+      commonjs(),
+    <% } %>
   ],
 }

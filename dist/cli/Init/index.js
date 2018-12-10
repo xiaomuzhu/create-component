@@ -63,6 +63,7 @@ exports.default = {
                 author: config_1.default.author,
                 useCommitlint: false,
                 usePrecommit: false,
+                cssinjs: false,
                 useCommitizen: false,
                 useCHANGELOG: false,
                 noInstall: false,
@@ -219,6 +220,15 @@ function getOptions(proName) {
             message: '是否继续高级设置',
             name: 'isContinue',
             default: true,
+        },
+        {
+            type: 'confirm',
+            message: '是否使用css-in-js',
+            name: 'cssinjs',
+            default: false,
+            when: (answers) => {
+                return !!answers.isContinue;
+            },
         },
         {
             type: 'confirm',

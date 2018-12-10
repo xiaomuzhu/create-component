@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './style.css'
+<% if (!cssinjs) { %>
+  import styles from './style.css'
+  <% } else { %>
+  import * as styledComponents from 'styled-components'
+
+  const Title = styledComponents.default.h1`
+    display: inline-block;
+    margin: 2em auto;
+    border: 2px solid #000;
+    font-size: 2em;
+  `
+  <% } %>
 
 export default class ExampleComponent extends Component {
   static propTypes = {
@@ -13,10 +24,10 @@ export default class ExampleComponent extends Component {
       text
     } = this.props
 
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
+    <% if (!cssinjs) { %>
+      return <div className={styles.test}>Example Component: {text}</div>
+    <% } else { %>
+      return <Title>Example Component: {text}</Title>
+    <% } %>
   }
 }

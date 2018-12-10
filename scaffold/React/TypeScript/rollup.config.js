@@ -16,14 +16,21 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
+      <% if (!!cssinjs) { %>
+      globals: { "styled-components": "styled" }
+      <% } %>
     },
     {
       file: pkg.module,
       format: 'es',
       exports: 'named',
       sourcemap: true,
+      <% if (!!cssinjs) { %>
+      globals: { "styled-components": "styled" }
+      <% } %>
     },
   ],
+  external: ["react", "react-dom", "prop-types", <% if (!!cssinjs) { %>"styled-components"<% } %>],
   plugins: [
     external(),
     postcss({
@@ -36,6 +43,15 @@ export default {
       rollupCommonJSResolveHack: true,
       clean: true,
     }),
+    <% if (!!cssinjs) { %>
+    commonjs({
+      include: "node_modules/**",
+      namedExports: {
+        "node_modules/react-is/index.js": ["isValidElementType"]
+      }
+    }),
+    <% } else { %>
     commonjs(),
+    <% } %>
   ],
 }

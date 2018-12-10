@@ -31,7 +31,7 @@ class InitCommand {
     }
     copyScaffold() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { proName, proPath, projectLanguage, frameworkType, usePrecommit } = this.options;
+            const { proName, proPath, projectLanguage, frameworkType, usePrecommit, cssinjs } = this.options;
             const extraOptions = {
                 year: index_1.default.getYear(),
             };
@@ -51,6 +51,9 @@ class InitCommand {
             fsEditor.copyTpl(index_1.default.getCommonPath('LICENSE', this.options.license), proPath, allOptions);
             fsEditor.copyTpl(index_1.default.getCommonPath('readme'), proPath, allOptions);
             fsEditor.copyTpl(index_1.default.getCommonPath('setup'), proPath, allOptions);
+            if (!cssinjs) {
+                fsEditor.copyTpl(index_1.default.getCommonPath('css'), `${proPath}/src/`, allOptions);
+            }
             if (this.options.useCommitlint) {
                 fsEditor.copyTpl(index_1.default.getCommonPath('commitlint'), proPath, {}, {}, globOptions);
             }

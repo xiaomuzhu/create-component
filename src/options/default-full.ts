@@ -9,6 +9,7 @@ export const fullOptions = {
   author: config.author,
   useCommitlint: true,
   usePrecommit: true,
+  cssinjs: false,
   useCommitizen: true,
   useCHANGELOG: true,
   frameworkType: FrameworkType.React,

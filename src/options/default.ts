@@ -10,6 +10,7 @@ export default {
   usePrecommit: false,
   useCommitizen: false,
   useCHANGELOG: false,
+  cssinjs: false,
   frameworkType: FrameworkType.React,
   projectLanguage: Language.JavaScript,
   license: OpenSourceLicenseType.MIT,

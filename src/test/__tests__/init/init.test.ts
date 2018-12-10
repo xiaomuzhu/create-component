@@ -4,7 +4,7 @@ import * as jetpack from 'fs-jetpack'
 import 'jest'
 import * as path from 'path'
 
-// const cwd = process.cwd()
+const cwd = process.cwd()
 const TEST_DIR = 'testTemplateDir'
 const tempDir = path.join(process.cwd(), TEST_DIR)
 
@@ -14,7 +14,7 @@ beforeEach(() => {
 })
 
 test('spins up a min app and performs various checks', async () => {
-  await execa.shell(`create-component init ${TEST_DIR} -d -n`)
+  await execa.shell(`node ${cwd}/index.js init ${TEST_DIR} -d -n`)
 
   process.chdir(TEST_DIR)
 
@@ -32,7 +32,7 @@ test('spins up a min app and performs various checks', async () => {
 })
 
 test('spins up a max app and performs various checks', async () => {
-  await execa.shell(`create-component init ${TEST_DIR} -f -n`)
+  await execa.shell(`node ${cwd}/index.js init ${TEST_DIR} -f -n`)
 
   process.chdir(TEST_DIR)
 

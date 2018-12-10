@@ -13,6 +13,7 @@
     "lint": "tslint -p src/**/*.ts",
     "release": "standard-version",
     "watch": "tsc -w",
+    "build": "tsc",
     "clean": "rm -rf ./testTemplateDir"
   },
   "keywords": [

@@ -6,5 +6,9 @@
       "node_modules/**/*.ts",
       "coverage/**/*.js"
     ]
-  }
+  },
+  "rules": {
+    "interface-name":false,
+    "no-unused-expression": [true, "allow-fast-null-checks"]
+}
 }

@@ -5,7 +5,7 @@ import { getGitConfigPath } from './git-config-path'
 export function getUser() {
 
   const gitConfigPath = getGitConfigPath()
-  const gitConfig = parseGitConfig.sync({ path: gitConfigPath })
+  const gitConfig = parseGitConfig.sync({ path: gitConfigPath! })
 
   return gitConfig.user
 }

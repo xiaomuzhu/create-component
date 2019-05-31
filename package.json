@@ -1,6 +1,6 @@
 {
   "name": "create-component-cli",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "CLI for bootstrapping react component",
   "main": "index.js",
   "bin": {

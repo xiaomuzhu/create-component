@@ -22,6 +22,9 @@
     "component",
     "cli"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "xiaomuzhu",
   "license": "MIT",
   "homepage": "https://github.com/xiaomuzhu/create-component",

@@ -1,6 +1,6 @@
 {
   "name": "create-component-cli",
-  "version": "0.0.4",
+  "version": "0.1.1",
   "description": "CLI for bootstrapping react component",
   "main": "index.js",
   "bin": {
@@ -23,7 +23,8 @@
     "cli"
   ],
   "files": [
-    "dist"
+    "dist",
+    "scaffold"
   ],
   "author": "xiaomuzhu",
   "license": "MIT",

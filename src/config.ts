@@ -8,7 +8,7 @@ const config = {
   gitUrl: `https://github.com/${getUser().name}`,
   src: 'src',
   dest: 'dist',
-  version: '1.0.0',
+  version: '0.1.1',
   packages: 'packages',
   log: {
     verbose: true, // 显示详细信息
